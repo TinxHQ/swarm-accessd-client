@@ -1,0 +1,5 @@
+wazo-accessd-client (0.1) wazo; urgency=medium
+
+  * Initial release.
+
+ -- Wazo Maintainers <dev+pkg@wazo.io>  Thu, 08 Mar 2018 11:49:22 -0500
