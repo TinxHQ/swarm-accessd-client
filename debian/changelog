@@ -1,4 +1,4 @@
-wazo-accessd-client (0.1) wazo; urgency=medium
+wazo-accessd-client (1.0) accessd-stretch; urgency=medium
 
   * Initial release.
 
