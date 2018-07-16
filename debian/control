@@ -11,7 +11,7 @@ Build-Depends:
 Standards-Version: 3.9.6
 X-Python3-Version: >= 3.5
 
-Package: wazo-accessd-client
+Package: wazo-accessd-client-python3
 Architecture: all
 Section: python
 Depends:
