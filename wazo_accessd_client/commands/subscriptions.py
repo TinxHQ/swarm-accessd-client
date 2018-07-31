@@ -26,7 +26,7 @@ class SubscriptionsCommand(AccessdCommand):
     def create(self, subscription, **kwargs):
         return self._post(subscription, **kwargs)
 
-    def update(self, subscription, **kwargs):
+    def amend(self, subscription, **kwargs):
         return self._post(subscription, **kwargs)
 
     def _post(self, subscription, **kwargs):
