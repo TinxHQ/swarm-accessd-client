@@ -39,7 +39,7 @@ subscription = {
     'term': 3,
     'product_sku': 'a-sku',
 }
-client.customers.create(subscription)
+client.subscriptions.create(subscription)
 ```
 
 ### Get a subscription
@@ -61,7 +61,7 @@ amend_subscription = {
     'term': 6,
     'product_sku': 'another-sku',
 }
-client.customers.amend(amend_subscription)
+client.subscriptions.amend(amend_subscription)
 ```
 
 ## Debian package
