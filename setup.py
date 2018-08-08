@@ -17,6 +17,7 @@ setup(
     entry_points={
         'wazo_accessd_client.commands': [
             'config = wazo_accessd_client.commands.config:ConfigCommand',
+            'subscriptions = wazo_accessd_client.commands.subscriptions:SubscriptionsCommand',
         ],
     }
 )
