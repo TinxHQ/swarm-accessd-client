@@ -18,6 +18,7 @@ setup(
         'wazo_accessd_client.commands': [
             'config = wazo_accessd_client.commands.config:ConfigCommand',
             'subscriptions = wazo_accessd_client.commands.subscriptions:SubscriptionsCommand',
+            'authorizations = wazo_accessd_client.commands.authorizations:AuthorizationsCommand',
         ],
     }
 )
