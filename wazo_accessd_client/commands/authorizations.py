@@ -8,6 +8,12 @@ class AuthorizationsCommand(BaseCommand):
 
     resource = 'authorizations'
 
+    def list(self, **params):
+        headers = self._get_headers(**params)
+        r = self.session.get(self.base_url, headers=headers, params=params)
+        self.raise_from_response(r)
+        return r.json()
+
     def create(self, authorization, **kwargs):
         headers = self._get_headers(write=True, **kwargs)
         r = self.session.post(self.base_url, json=authorization, headers=headers)
