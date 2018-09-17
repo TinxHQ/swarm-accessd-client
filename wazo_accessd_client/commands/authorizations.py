@@ -20,6 +20,13 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
+    def get(self, authorization_uuid, tenant_uuid=None, **params):
+        url = '{base}/{uuid}'.format(base=self.base_url, uuid=authorization_uuid)
+        headers = self._get_headers(tenant_uuid=tenant_uuid)
+        r = self.session.get(url, headers=headers)
+        self.raise_from_response(r)
+        return r.json()
+
     def issue_token(self, authorizations_uuids, **kwargs):
         url = '{base}/token'.format(base=self.base_url)
         headers = self._get_headers(write=True, **kwargs)
