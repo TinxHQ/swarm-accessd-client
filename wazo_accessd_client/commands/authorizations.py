@@ -38,10 +38,17 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def revoke(self, authorization_uuid, body, **kwargs):
-        url = '{base}/{uuid}'.format(base=self.base_url, uuid=authorization_uuid)
+    def revoke(self, authorization_uuid, subscription_uuid=None, status='REVOKED', **kwargs):
+        if subscription_uuid:
+            url = '{base}/subscriptions/{subscription_uuid}/authorizations/{uuid}'.format(
+                base=self._client.url(),
+                uuid=authorization_uuid,
+                subscription_uuid=subscription_uuid,
+            )
+        else:
+            url = '{base}/{uuid}'.format(base=self.base_url, uuid=authorization_uuid)
         headers = self._get_headers(write=True, **kwargs)
-        r = self.session.put(url, json=body, headers=headers)
+        r = self.session.put(url, json={'status': status}, headers=headers)
         self.raise_from_response(r)
         return r.json()
 
