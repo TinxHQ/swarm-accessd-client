@@ -14,9 +14,17 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def create(self, authorization, **kwargs):
+    def create(self, authorization, subscription_uuid=None, **kwargs):
         headers = self._get_headers(write=True, **kwargs)
-        r = self.session.post(self.base_url, json=authorization, headers=headers)
+        if subscription_uuid:
+            url = '{base}/subscriptions/{subscription_uuid}/{resource}'.format(
+                base=self._client.url(),
+                subscription_uuid=subscription_uuid,
+                resource=self.resource,
+            )
+        else:
+            url = self.base_url
+        r = self.session.post(url, json=authorization, headers=headers)
         self.raise_from_response(r)
         return r.json()
 
