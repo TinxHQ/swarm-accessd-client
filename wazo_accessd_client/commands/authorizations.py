@@ -8,22 +8,25 @@ class AuthorizationsCommand(BaseCommand):
 
     resource = 'authorizations'
 
-    def list(self, **params):
+    def _get_list_url(self, subscription_uuid=None):
+        if subscription_uuid:
+            return '{base}/subscriptions/{subscription_uuid}/{resource}'.format(
+                base=self._client.url(),
+                subscription_uuid=subscription_uuid,
+                resource=self.resource,
+            )
+        return self.base_url
+
+    def list(self, subscription_uuid=None, **params):
         headers = self._get_headers(**params)
-        r = self.session.get(self.base_url, headers=headers, params=params)
+        url = self._get_list_url(subscription_uuid=subscription_uuid)
+        r = self.session.get(url, headers=headers, params=params)
         self.raise_from_response(r)
         return r.json()
 
     def create(self, authorization, subscription_uuid=None, **kwargs):
         headers = self._get_headers(write=True, **kwargs)
-        if subscription_uuid:
-            url = '{base}/subscriptions/{subscription_uuid}/{resource}'.format(
-                base=self._client.url(),
-                subscription_uuid=subscription_uuid,
-                resource=self.resource,
-            )
-        else:
-            url = self.base_url
+        url = self._get_list_url(subscription_uuid=subscription_uuid)
         r = self.session.post(url, json=authorization, headers=headers)
         self.raise_from_response(r)
         return r.json()
