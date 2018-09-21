@@ -52,17 +52,17 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def issue_token(self, authorizations_uuids={}, subscription_uuid=None, **kwargs):
-        if subscription_uuid:
-            url = '{base}/subscriptions/{subscription_uuid}/{resource}/token'.format(
-                base=self._client.url(),
-                subscription_uuid=subscription_uuid,
-                resource=self.resource,
-            )
-        else:
-            url = '{base}/token'.format(base=self.base_url)
+    def issue_token(self, authorizations_uuids={}, **kwargs):
+        url = '{base}/token'.format(base=self.base_url)
         headers = self._get_headers(write=True, **kwargs)
         r = self.session.post(url, json=authorizations_uuids, headers=headers)
+        self.raise_from_response(r)
+        return r.json()
+
+    def issue_subscription_token(self, **kwargs):
+        url = '{base}/subscriptions/token'.format(base=self._client.url())
+        headers = self._get_headers(write=True, **kwargs)
+        r = self.session.post(url, headers=headers)
         self.raise_from_response(r)
         if r.status_code == 204:
             return
