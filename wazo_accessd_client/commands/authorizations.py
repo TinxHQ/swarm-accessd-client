@@ -52,10 +52,10 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def issue_token(self, authorizations_uuids={}, **kwargs):
+    def issue_token(self, authorization_uuids={}, **kwargs):
         url = '{base}/token'.format(base=self.base_url)
         headers = self._get_headers(write=True, **kwargs)
-        r = self.session.post(url, json=authorizations_uuids, headers=headers)
+        r = self.session.post(url, json=authorization_uuids, headers=headers)
         self.raise_from_response(r)
         return r.json()
 
