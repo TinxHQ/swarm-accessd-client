@@ -23,7 +23,7 @@ client.config.get()
 
 ### Listing subscriptions
 
-Possible parameters are : `recurse`, `start_date`, `contract_date`, `status`, `term`, `auto_renew`, `product_sku`
+Possible parameters are : `recurse`, `from`, `until`, `contract_date`, `status`, `term`, `auto_renew`, `product_sku`
 
 ```python
 client.subscriptions.list(recurse=True)
@@ -34,8 +34,8 @@ client.subscriptions.list(recurse=True)
 ```python
 subscription = {
     'name': 'Some name',
-    'start_date': datetime.date.today(),
-    'contract_date': datetime.date.today(),
+    'start_date': datetime.date.today().isoformat(),
+    'contract_date': datetime.date.today().isoformat(),
     'term': 3,
     'product_sku': 'a-sku',
 }
@@ -54,14 +54,108 @@ Add the uuid of the subscription you want to amend in your subscription data
 
 ```python
 amend_subscription = {
-    'uuid': subscription_uuid,
+    'parent_uuid': subscription_uuid,
     'name': 'New name',
-    'start_date': datetime.date.today(),
-    'contract_date': datetime.date.today(),
+    'start_date': datetime.date.today().isoformat(),
+    'contract_date': datetime.date.today().isoformat(),
     'term': 6,
     'product_sku': 'another-sku',
 }
 client.subscriptions.amend(amend_subscription)
+```
+
+### Delete a subscription
+
+```python
+client.subscriptions.delete(subscription_uuid)
+```
+
+## Authorizations
+
+### Listing authorizations
+
+Possible parameters are : `from`, `until`, `status`, `term`, `auto_renew`, `service_remote_uuid`
+
+#### Main authorizations
+
+Main authorizations are filtered by subscriptions
+
+```python
+client.authorizations.list(subscription_uuid=subscription_uuid)
+```
+
+#### Sub-authorizations
+
+```python
+client.authorizations.list()
+```
+
+### Add a new authorization
+
+#### Main authorization
+
+```python
+authorization = {
+    'start_date': datetime.date.today().isoformat(),
+    'term': 3,
+    'rules': [
+        {'name': rule_name, 'options': rule_options}
+    ],
+}
+client.authorizations.create(authorization, subscription_uuid=subscription_uuid)
+```
+
+#### Sub-authorization
+
+```python
+authorization = {
+    'start_date': datetime.date.today().isoformat(),
+    'term': 3,
+    'rules': [
+        {'name': rule_name, 'options': rule_options}
+    ],
+    "service": {
+        'remote_uuid': instance_uuid,
+        'ip_address': instance_ip,
+        'mac_address':instance_mac_address,
+        'service_id': 1
+    }
+}
+client.authorizations.create(authorization)
+```
+
+### Get an authorization
+
+```python
+client.authorizations.get(authorization_uuid)
+```
+
+### Revoke an authorization
+
+#### Main authorization
+
+```python
+client.authorizations.revoke(authorization_uuid, subscription_uuid=subscription_uuid)
+```
+
+#### Sub authorization
+
+```python
+client.authorizations.revoke(authorization_uuid)
+```
+
+### Issue a token
+
+#### For given authorizations
+
+```python
+client.subscriptions.issue_token([authorization_uuid_1, authorization_uuid_2])
+```
+
+#### For all authorizations of all subscriptions
+
+```python
+client.subscriptions.issue_subscription_token()
 ```
 
 ## Debian package

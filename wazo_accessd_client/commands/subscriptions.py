@@ -15,11 +15,17 @@ class SubscriptionsCommand(BaseCommand):
         return r.json()
 
     def get(self, subscription_uuid, tenant_uuid=None, **params):
-        url = '{base}/{uuid}'.format(base=self.base_url, uuid=subscription_uuid, **params)
+        url = '{base}/{uuid}'.format(base=self.base_url, uuid=subscription_uuid)
         headers = self._get_headers(tenant_uuid=tenant_uuid)
         r = self.session.get(url, headers=headers)
         self.raise_from_response(r)
         return r.json()
+
+    def delete(self, subscription_uuid, tenant_uuid=None):
+        url = '{base}/{uuid}'.format(base=self.base_url, uuid=subscription_uuid)
+        headers = self._get_headers(tenant_uuid=tenant_uuid)
+        r = self.session.delete(url, headers=headers)
+        self.raise_from_response(r)
 
     def create(self, subscription, **kwargs):
         return self._post(subscription, **kwargs)
