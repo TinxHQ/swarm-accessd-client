@@ -62,7 +62,7 @@ class AuthorizationsCommand(BaseCommand):
 
     def issue_subscription_token(self, **kwargs):
         url = '{base}/subscriptions/token'.format(base=self._client.url())
-        headers = self._get_headers(write=True, **kwargs)
+        headers = self._get_headers(write=False, **kwargs)
         r = self.session.post(url, headers=headers)
         self.raise_from_response(r)
         if r.status_code == 204:
