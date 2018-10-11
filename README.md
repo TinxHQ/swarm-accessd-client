@@ -48,20 +48,17 @@ client.subscriptions.create(subscription)
 client.subscriptions.get(subscription_uuid)
 ```
 
-### Amend a subscription
-
-Add the uuid of the subscription you want to amend in your subscription data
+### Update a subscription
 
 ```python
-amend_subscription = {
-    'parent_uuid': subscription_uuid,
+update_args = {
     'name': 'New name',
     'start_date': datetime.date.today().isoformat(),
     'contract_date': datetime.date.today().isoformat(),
     'term': 6,
     'product_sku': 'another-sku',
 }
-client.subscriptions.amend(amend_subscription)
+client.subscriptions.update(subscription_uuid, update_args)
 ```
 
 ### Delete a subscription
