@@ -14,10 +14,17 @@ class SubscriptionsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def get(self, subscription_uuid, tenant_uuid=None, **params):
+    def get(self, subscription_uuid, tenant_uuid=None):
         url = '{base}/{uuid}'.format(base=self.base_url, uuid=subscription_uuid)
         headers = self._get_headers(tenant_uuid=tenant_uuid)
         r = self.session.get(url, headers=headers)
+        self.raise_from_response(r)
+        return r.json()
+
+    def update(self, subscription_uuid, update_args={}, tenant_uuid=None):
+        url = '{base}/{uuid}'.format(base=self.base_url, uuid=subscription_uuid)
+        headers = self._get_headers(tenant_uuid=tenant_uuid)
+        r = self.session.put(url, json=update_args, headers=headers)
         self.raise_from_response(r)
         return r.json()
 
