@@ -24,7 +24,7 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def create(self, authorization, subscription_uuid=None, **kwargs):
+    def create(self, authorization, subscription_uuid='', **kwargs):
         headers = self._get_headers(write=True, **kwargs)
         url = self._get_list_url(subscription_uuid=subscription_uuid)
         r = self.session.post(url, json=authorization, headers=headers)
@@ -38,8 +38,15 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def update(self, authorization_uuid, update_args={}, tenant_uuid=None):
-        url = '{base}/{uuid}'.format(base=self.base_url, uuid=authorization_uuid)
+    def update(self, authorization_uuid, update_args, subscription_uuid='', tenant_uuid=None):
+        if subscription_uuid:
+            url = '{base}/subscriptions/{subscription_uuid}/authorizations/{authorization_uuid}'.format(
+                base=self._client.url(),
+                subscription_uuid=subscription_uuid,
+                authorization_uuid=authorization_uuid,
+            )
+        else:
+            url = '{base}/{uuid}'.format(base=self.base_url, uuid=authorization_uuid)
         headers = self._get_headers(tenant_uuid=tenant_uuid)
         r = self.session.put(url, json=update_args, headers=headers)
         self.raise_from_response(r)
