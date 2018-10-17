@@ -127,18 +127,18 @@ client.authorizations.create(authorization)
 client.authorizations.get(authorization_uuid)
 ```
 
-### Revoke an authorization
+### Delete an authorization
 
 #### Main authorization
 
 ```python
-client.authorizations.revoke(authorization_uuid, subscription_uuid=subscription_uuid)
+client.authorizations.delete(authorization_uuid, subscription_uuid=subscription_uuid)
 ```
 
 #### Sub authorization
 
 ```python
-client.authorizations.revoke(authorization_uuid)
+client.authorizations.delete(authorization_uuid)
 ```
 
 ### Issue a token

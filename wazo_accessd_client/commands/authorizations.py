@@ -52,7 +52,7 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def revoke(self, authorization_uuid, subscription_uuid=None, **kwargs):
+    def delete(self, authorization_uuid, subscription_uuid=None, **kwargs):
         if subscription_uuid:
             url = '{base}/subscriptions/{subscription_uuid}/authorizations/{uuid}'.format(
                 base=self._client.url(),
@@ -64,7 +64,6 @@ class AuthorizationsCommand(BaseCommand):
         headers = self._get_headers(**kwargs)
         r = self.session.delete(url, headers=headers)
         self.raise_from_response(r)
-        return r.json()
 
     def issue_token(self, authorization_uuids=[], **kwargs):
         url = '{base}/token'.format(base=self.base_url)
