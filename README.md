@@ -1,13 +1,13 @@
-# wazo-accessd-client
+# swarm-accessd-client
 
-A python client library to access wazo-accessd
+A python client library to access swarm-accessd
 
 ## Usage
 
 ### Creating a client
 
 ```python
-from wazo_accessd_client import Client
+from swarm_accessd_client import Client
 client = Client('<accessd hostname>', token='<auth token>')
 ```
 
@@ -157,12 +157,12 @@ client.subscriptions.issue_subscription_token()
 
 ## Debian package
 
-Follow the following steps to build a debian package for wazo-accessd-client manually.
+Follow the following steps to build a debian package for swarm-accessd-client manually.
 
 1. Copy the source directory to a machine with all dependencies installed
 
 ```sh
-rsync -av . <builder-host>:~/wazo-accessd-client
+rsync -av . <builder-host>:~/swarm-accessd-client
 ```
 
 2. On the host, increment the changelog

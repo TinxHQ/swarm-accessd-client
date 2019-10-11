@@ -1,4 +1,4 @@
-wazo-accessd-client (1.0) accessd-stretch; urgency=medium
+swarm-accessd-client (1.0) swarm-dev-buster; urgency=medium
 
   * Initial release.
 
