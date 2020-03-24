@@ -19,6 +19,12 @@ client = Client('<accessd hostname>', token='<auth token>')
 client.config.get()
 ```
 
+## Status
+
+```python
+client.status.check()
+```
+
 ## Subscriptions
 
 ### Listing subscriptions
