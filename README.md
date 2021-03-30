@@ -133,6 +133,12 @@ client.authorizations.create(authorization)
 client.authorizations.get(authorization_uuid)
 ```
 
+### Get authorizations' seats
+
+```python
+client.authorizations.seats()
+```
+
 ### Delete an authorization
 
 #### Main authorization
