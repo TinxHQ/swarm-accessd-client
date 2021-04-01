@@ -82,7 +82,7 @@ class AuthorizationsCommand(BaseCommand):
             return
         return r.json()
 
-    def seats(self, subscription_uuid=None, **params):
+    def seats(self, **params):
         url = '{base}/seats'.format(base=self.base_url)
         headers = self._get_headers(write=False, **params)
         r = self.session.get(url, headers=headers, params=params)
