@@ -137,6 +137,7 @@ client.authorizations.get(authorization_uuid)
 
 ```python
 client.authorizations.seats()
+client.authorizations.seats(tenant_uuid=SUBTENANT_UUID)
 ```
 
 ### Delete an authorization
