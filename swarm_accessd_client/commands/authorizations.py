@@ -1,4 +1,4 @@
-# Copyright 2018 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2018-2021 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .helpers.base import BaseCommand
@@ -80,4 +80,11 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         if r.status_code == 204:
             return
+        return r.json()
+
+    def seats(self, **params):
+        url = '{base}/seats'.format(base=self.base_url)
+        headers = self._get_headers(write=False, **params)
+        r = self.session.get(url, headers=headers, params=params)
+        self.raise_from_response(r)
         return r.json()
