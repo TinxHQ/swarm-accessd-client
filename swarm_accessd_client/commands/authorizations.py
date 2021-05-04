@@ -38,13 +38,12 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def update(self, authorization_uuid, update_args, subscription_uuid='', tenant_uuid=None):
+    def update(
+        self, authorization_uuid, update_args, subscription_uuid='', tenant_uuid=None
+    ):
         if subscription_uuid:
-            url = '{base}/subscriptions/{subscription_uuid}/authorizations/{authorization_uuid}'.format(
-                base=self._client.url(),
-                subscription_uuid=subscription_uuid,
-                authorization_uuid=authorization_uuid,
-            )
+            base = self._client.url()
+            url = f'{base}/subscriptions/{subscription_uuid}/authorizations/{authorization_uuid}'
         else:
             url = '{base}/{uuid}'.format(base=self.base_url, uuid=authorization_uuid)
         headers = self._get_headers(tenant_uuid=tenant_uuid)
@@ -54,11 +53,8 @@ class AuthorizationsCommand(BaseCommand):
 
     def delete(self, authorization_uuid, subscription_uuid=None, **kwargs):
         if subscription_uuid:
-            url = '{base}/subscriptions/{subscription_uuid}/authorizations/{uuid}'.format(
-                base=self._client.url(),
-                uuid=authorization_uuid,
-                subscription_uuid=subscription_uuid,
-            )
+            base = self._client.url()
+            url = f'{base}/subscriptions/{subscription_uuid}/authorizations/{authorization_uuid}'
         else:
             url = '{base}/{uuid}'.format(base=self.base_url, uuid=authorization_uuid)
         headers = self._get_headers(**kwargs)
