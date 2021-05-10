@@ -14,6 +14,11 @@ pipeline {
         sh 'tox -e linters'
       }
     }
+    stage('Unit tests') {
+      steps {
+        sh 'tox -e py37'
+      }
+    }
     stage('Build and deploy') {
       steps {
         build job: 'build-package', parameters: [
