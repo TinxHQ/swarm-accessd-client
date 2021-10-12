@@ -1,4 +1,4 @@
-# Copyright 2018 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2018-2021 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .helpers.base import BaseCommand
@@ -15,7 +15,7 @@ class SubscriptionsCommand(BaseCommand):
         return r.json()
 
     def create(self, subscription, **kwargs):
-        headers = self._get_headers(write=True, **kwargs)
+        headers = self._get_headers(**kwargs)
         r = self.session.post(self.base_url, json=subscription, headers=headers)
         self.raise_from_response(r)
         return r.json()
