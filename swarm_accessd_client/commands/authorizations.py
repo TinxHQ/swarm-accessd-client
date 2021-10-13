@@ -25,7 +25,7 @@ class AuthorizationsCommand(BaseCommand):
         return r.json()
 
     def create(self, authorization, subscription_uuid='', **kwargs):
-        headers = self._get_headers(write=True, **kwargs)
+        headers = self._get_headers(**kwargs)
         url = self._get_list_url(subscription_uuid=subscription_uuid)
         r = self.session.post(url, json=authorization, headers=headers)
         self.raise_from_response(r)
@@ -63,7 +63,7 @@ class AuthorizationsCommand(BaseCommand):
 
     def issue_token(self, authorization_uuids=[], **kwargs):
         url = '{base}/token'.format(base=self.base_url)
-        headers = self._get_headers(write=True, **kwargs)
+        headers = self._get_headers(**kwargs)
         json = {'authorization_uuids': authorization_uuids}
         r = self.session.post(url, json=json, headers=headers)
         self.raise_from_response(r)
@@ -71,7 +71,7 @@ class AuthorizationsCommand(BaseCommand):
 
     def issue_subscription_token(self, **kwargs):
         url = '{base}/subscriptions/token'.format(base=self._client.url())
-        headers = self._get_headers(write=False, **kwargs)
+        headers = self._get_headers(**kwargs)
         r = self.session.post(url, headers=headers)
         self.raise_from_response(r)
         if r.status_code == 204:
@@ -80,7 +80,7 @@ class AuthorizationsCommand(BaseCommand):
 
     def seats(self, **params):
         url = '{base}/seats'.format(base=self.base_url)
-        headers = self._get_headers(write=False, **params)
+        headers = self._get_headers(**params)
         r = self.session.get(url, headers=headers, params=params)
         self.raise_from_response(r)
         return r.json()
