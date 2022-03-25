@@ -29,7 +29,7 @@ client.status.check()
 
 ### Listing subscriptions
 
-Possible parameters are : `recurse`, `from`, `until`, `contract_date`, `status`, `term`, `auto_renew`, `product_sku`
+Possible parameters are : `recurse`, `from`, `until`, `created_at`, `status`, `term`, `cancel_at_end_of_period`, `product_sku`
 
 ```python
 client.subscriptions.list(recurse=True)
@@ -40,8 +40,6 @@ client.subscriptions.list(recurse=True)
 ```python
 subscription = {
     'name': 'Some name',
-    'start_date': datetime.date.today().isoformat(),
-    'contract_date': datetime.date.today().isoformat(),
     'term': 3,
     'product_sku': 'a-sku',
 }
@@ -59,8 +57,6 @@ client.subscriptions.get(subscription_uuid)
 ```python
 update_args = {
     'name': 'New name',
-    'start_date': datetime.date.today().isoformat(),
-    'contract_date': datetime.date.today().isoformat(),
     'term': 6,
     'product_sku': 'another-sku',
 }
