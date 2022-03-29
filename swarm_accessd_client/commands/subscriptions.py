@@ -39,3 +39,10 @@ class SubscriptionsCommand(BaseCommand):
         headers = self._get_headers(tenant_uuid=tenant_uuid)
         r = self.session.delete(url, headers=headers)
         self.raise_from_response(r)
+
+    def get_default(self, tenant_uuid=None):
+        url = f'{self.base_url}/default'
+        headers = self._get_headers(tenant_uuid=tenant_uuid)
+        r = self.session.get(url, headers=headers)
+        self.raise_from_response(r)
+        return r.json()

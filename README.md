@@ -67,6 +67,7 @@ client.subscriptions.update(subscription_uuid, update_args)
 
 ```python
 client.subscriptions.delete(subscription_uuid)
+client.subscriptions.get_default()
 ```
 
 ## Authorizations
