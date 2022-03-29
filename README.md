@@ -61,6 +61,7 @@ update_args = {
     'product_sku': 'another-sku',
 }
 client.subscriptions.update(subscription_uuid, update_args)
+client.subscriptions.update_default(update_args)
 ```
 
 ### Delete a subscription
