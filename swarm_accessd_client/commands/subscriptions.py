@@ -14,12 +14,6 @@ class SubscriptionsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def create(self, subscription, **kwargs):
-        headers = self._get_headers(**kwargs)
-        r = self.session.post(self.base_url, json=subscription, headers=headers)
-        self.raise_from_response(r)
-        return r.json()
-
     def get(self, subscription_uuid, tenant_uuid=None):
         url = f'{self.base_url}/{subscription_uuid}'
         headers = self._get_headers(tenant_uuid=tenant_uuid)

@@ -35,17 +35,6 @@ Possible parameters are : `recurse`, `from`, `until`, `created_at`, `status`, `t
 client.subscriptions.list(recurse=True)
 ```
 
-### Add a new subscription
-
-```python
-subscription = {
-    'name': 'Some name',
-    'term': 3,
-    'product_sku': 'a-sku',
-}
-client.subscriptions.create(subscription)
-```
-
 ### Get a subscription
 
 ```python
