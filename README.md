@@ -29,7 +29,7 @@ client.status.check()
 
 ### Listing subscriptions
 
-Possible parameters are : `recurse`, `from`, `until`, `created_at`, `status`, `term`, `cancel_at_end_of_period`, `product_sku`
+Possible parameters are : `recurse`, `from`, `until`, `created_at`, `status`, `term`, `cancel_at_end_of_period`, `partnership`
 
 ```python
 client.subscriptions.list(recurse=True)
@@ -47,7 +47,7 @@ client.subscriptions.get(subscription_uuid)
 update_args = {
     'name': 'New name',
     'term': 6,
-    'product_sku': 'another-sku',
+    'partnership': 'gold',
 }
 client.subscriptions.update(subscription_uuid, update_args)
 client.subscriptions.update_default(update_args)
