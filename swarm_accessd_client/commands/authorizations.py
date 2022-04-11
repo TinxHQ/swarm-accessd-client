@@ -28,7 +28,7 @@ class AuthorizationsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def get(self, authorization_uuid, tenant_uuid=None, **params):
+    def get(self, authorization_uuid, tenant_uuid=None):
         url = f'{self.base_url}/{authorization_uuid}'
         headers = self._get_headers(tenant_uuid=tenant_uuid)
         r = self.session.get(url, headers=headers)
