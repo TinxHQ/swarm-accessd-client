@@ -60,6 +60,22 @@ client.subscriptions.update_default(update_args)
 client.subscriptions.delete(subscription_uuid)
 ```
 
+### Get a customer's subscription
+
+```python
+client.subscriptions.get_default(customer_uuid=customer_uuid)
+```
+
+### Update a customer's subscription
+
+```python
+update_args = {
+    'term': 12,
+    'partnership': 'gold',
+}
+client.subscriptions.update_default(update_args, customer_uuid=customer_uuid)
+```
+
 ## Authorizations
 
 ### Listing authorizations
