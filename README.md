@@ -39,6 +39,7 @@ client.subscriptions.list(recurse=True)
 
 ```python
 client.subscriptions.get(subscription_uuid)
+client.subscriptions.get_default()
 ```
 
 ### Update a subscription
@@ -57,7 +58,22 @@ client.subscriptions.update_default(update_args)
 
 ```python
 client.subscriptions.delete(subscription_uuid)
-client.subscriptions.get_default()
+```
+
+### Get a customer's subscription
+
+```python
+client.subscriptions.get_default(customer_uuid=customer_uuid)
+```
+
+### Update a customer's subscription
+
+```python
+update_args = {
+    'term': 12,
+    'partnership': 'gold',
+}
+client.subscriptions.update_default(update_args, customer_uuid=customer_uuid)
 ```
 
 ## Authorizations

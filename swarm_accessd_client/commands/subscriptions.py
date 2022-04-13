@@ -34,15 +34,23 @@ class SubscriptionsCommand(BaseCommand):
         r = self.session.delete(url, headers=headers)
         self.raise_from_response(r)
 
-    def get_default(self, tenant_uuid=None):
-        url = f'{self.base_url}/default'
+    def get_default(self, tenant_uuid=None, customer_uuid=None):
+        if customer_uuid:
+            base = self._client.url()
+            url = f'{base}/customers/{customer_uuid}/subscriptions/default'
+        else:
+            url = f'{self.base_url}/default'
         headers = self._get_headers(tenant_uuid=tenant_uuid)
         r = self.session.get(url, headers=headers)
         self.raise_from_response(r)
         return r.json()
 
-    def update_default(self, update_args={}, tenant_uuid=None):
-        url = f'{self.base_url}/default'
+    def update_default(self, update_args={}, tenant_uuid=None, customer_uuid=None):
+        if customer_uuid:
+            base = self._client.url()
+            url = f'{base}/customers/{customer_uuid}/subscriptions/default'
+        else:
+            url = f'{self.base_url}/default'
         headers = self._get_headers(tenant_uuid=tenant_uuid)
         r = self.session.put(url, json=update_args, headers=headers)
         self.raise_from_response(r)
