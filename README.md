@@ -102,7 +102,6 @@ client.authorizations.list()
 
 ```python
 authorization = {
-    'start_date': datetime.date.today().isoformat(),
     'term': 3,
     'rules': [
         {'name': rule_name, 'options': rule_options}
@@ -115,7 +114,6 @@ client.authorizations.create(authorization, subscription_uuid=subscription_uuid)
 
 ```python
 authorization = {
-    'start_date': datetime.date.today().isoformat(),
     'term': 3,
     'rules': [
         {'name': rule_name, 'options': rule_options}
