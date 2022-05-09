@@ -76,6 +76,12 @@ update_args = {
 client.subscriptions.update_default(update_args, customer_uuid=customer_uuid)
 ```
 
+### Get customers subscription summary
+
+```python
+client.subscriptions.customers_summary()
+```
+
 ## Authorizations
 
 ### Listing authorizations
