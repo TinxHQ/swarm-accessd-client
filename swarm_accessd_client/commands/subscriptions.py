@@ -63,3 +63,11 @@ class SubscriptionsCommand(BaseCommand):
         r = self.session.get(url, headers=headers, params=params)
         self.raise_from_response(r)
         return r.json()
+
+    def summary(self, **params):
+        base = self._client.url()
+        url = f'{base}/subscriptions/default/summary'
+        headers = self._get_headers(**params)
+        r = self.session.get(url, headers=headers, params=params)
+        self.raise_from_response(r)
+        return r.json()

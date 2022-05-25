@@ -82,6 +82,12 @@ client.subscriptions.update_default(update_args, customer_uuid=customer_uuid)
 client.subscriptions.customers_summary()
 ```
 
+### Get reseller subscription summary
+
+```python
+client.subscriptions.summary()
+```
+
 ## Authorizations
 
 ### Listing authorizations
