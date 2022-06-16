@@ -94,6 +94,12 @@ client.subscriptions.update_default(update_args, customer_uuid=customer_uuid)
 client.subscriptions.activate_default(customer_uuid=customer_uuid)
 ```
 
+### Expire a customer subscription
+
+```python
+client.subscriptions.expire_default(customer_uuid=customer_uuid)
+```
+
 ### Get customers subscription summary
 
 ```python
