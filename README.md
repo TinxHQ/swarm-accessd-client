@@ -54,6 +54,12 @@ client.subscriptions.update(subscription_uuid, update_args)
 client.subscriptions.update_default(update_args)
 ```
 
+### Activate a subscription
+
+```python
+client.subscriptions.activate_default()
+```
+
 ### Delete a subscription
 
 ```python
