@@ -60,6 +60,12 @@ client.subscriptions.update_default(update_args)
 client.subscriptions.activate_default()
 ```
 
+### Expire a subscription
+
+```python
+client.subscriptions.expire_default()
+```
+
 ### Delete a subscription
 
 ```python
