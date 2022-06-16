@@ -56,8 +56,12 @@ class SubscriptionsCommand(BaseCommand):
         self.raise_from_response(r)
         return r.json()
 
-    def activate_default(self, tenant_uuid=None):
-        url = f'{self.base_url}/default/activate'
+    def activate_default(self, tenant_uuid=None, customer_uuid=None):
+        if customer_uuid:
+            base = self._client.url()
+            url = f'{base}/customers/{customer_uuid}/subscriptions/default/activate'
+        else:
+            url = f'{self.base_url}/default/activate'
         headers = self._get_headers(tenant_uuid=tenant_uuid)
         r = self.session.put(url, headers=headers)
         self.raise_from_response(r)
