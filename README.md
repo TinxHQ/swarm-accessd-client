@@ -54,6 +54,18 @@ client.subscriptions.update(subscription_uuid, update_args)
 client.subscriptions.update_default(update_args)
 ```
 
+### Activate a subscription
+
+```python
+client.subscriptions.activate_default()
+```
+
+### Expire a subscription
+
+```python
+client.subscriptions.expire_default()
+```
+
 ### Delete a subscription
 
 ```python
@@ -74,6 +86,18 @@ update_args = {
     'partnership': 'gold',
 }
 client.subscriptions.update_default(update_args, customer_uuid=customer_uuid)
+```
+
+### Activate a customer subscription
+
+```python
+client.subscriptions.activate_default(customer_uuid=customer_uuid)
+```
+
+### Expire a customer subscription
+
+```python
+client.subscriptions.expire_default(customer_uuid=customer_uuid)
 ```
 
 ### Get customers subscription summary
