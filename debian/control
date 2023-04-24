@@ -1,6 +1,6 @@
 Source: swarm-accessd-client
 Section: python
-Priority: extra
+Priority: optional
 Maintainer: Wazo Maintainers <dev@wazo.io>
 Build-Depends:
  debhelper (>= 12),
