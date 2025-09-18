@@ -47,8 +47,9 @@ pipeline {
       }
       steps {
         build job: 'build-package', parameters: [
-          string(name: 'PACKAGE', value: "${env.JOB_NAME}"),
+          string(name: 'PACKAGE', value: "swarm-accessd-client"),
           string(name: 'VERSION', value: sh(script: 'wazo-version unstable', returnStdout: true).trim()),
+          string(name: 'BRANCH', value: "bookworm"),
           string(name: 'DEBIAN_REPOSITORY', value: 'private'),
           string(name: 'DEBIAN_DISTRIBUTION', value: 'portal-dev-bookworm'),
         ]
