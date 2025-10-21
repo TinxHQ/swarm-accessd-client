@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'general'
+    label 'general-debian12'
   }
   triggers {
     githubPush()
@@ -36,7 +36,7 @@ pipeline {
         }
       }
       steps {
-        sh 'tox -e py39'
+        sh 'tox -e py311'
       }
     }
     stage('Debian build and deploy') {
@@ -50,7 +50,7 @@ pipeline {
           string(name: 'PACKAGE', value: "${env.JOB_NAME}"),
           string(name: 'VERSION', value: sh(script: 'wazo-version unstable', returnStdout: true).trim()),
           string(name: 'DEBIAN_REPOSITORY', value: 'private'),
-          string(name: 'DEBIAN_DISTRIBUTION', value: 'portal-dev-bullseye'),
+          string(name: 'DEBIAN_DISTRIBUTION', value: 'portal-dev-bookworm'),
         ]
       }
     }
